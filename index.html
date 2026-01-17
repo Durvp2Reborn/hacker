@@ -1,14 +1,164 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ecologicclient</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progress Dashboard</title>
+  <style>
+    /* General Body Styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: white;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .overall-progress-container {
+      margin-top: 20px;
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .overall-bar-title {
+      font-size: 18px;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .overall-bar {
+      width: 100%;
+      position: relative;
+      background: #e6e6e6;
+      height: 30px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+    }
+
+    .overall-bar-fill {
+      height: 100%;
+      background-color: lightblue;
+      border-radius: 15px;
+      transition: width 1s ease-out;
+    }
+
+    .circle-container {
+      position: relative;
+      width: 150px;
+      height: 150px;
+    }
+
+    .circle-progress {
+      height: 150px;
+      width: 150px;
+      border-radius: 50%;
+      background: conic-gradient(
+              green calc(var(--progress) * 1%),
+              #e6e6e6 0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .circle-value {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+      position: absolute;
+    }
+
+    .bar-container {
+      width: 80%;
+      margin-top: 30px;
+    }
+
+    .bar {
+      display: flex;
+      align-items: center;
+      margin: 15px 0;
+    }
+
+    .bar-title {
+      width: 30%;
+      font-size: 16px;
+      padding-right: 10px;
+      text-align: right;
+    }
+
+    .bar-fill-container {
+      background: #e6e6e6;
+      width: 70%;
+      height: 30px;
+      position: relative;
+      border-radius: 15px;
+    }
+
+    .bar-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      border-radius: 15px;
+      background-color: green;
+    }
+
+    .bar-percent {
+      padding-left: 15px;
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+<!-- Overall Progress Bar -->
+<div class="overall-progress-container">
+  <div class="overall-bar-title">Overall Score</div>
+  <div class="overall-bar">
+    <div class="overall-bar-fill" style="width: 75%;"></div>
+  </div>
+  <div class="circle-container">
+    <div class="circle-progress" style="--progress: 0.75;">
+      <div class="circle-value">75%</div>
+    </div>
+  </div>
+</div>
+
+<!-- Bar Section -->
+<div class="bar-container" id="barSection">
+  <!-- Example Bars -->
+  <div class="bar">
+    <div class="bar-title">Category A</div>
+    <div class="bar-fill-container">
+      <div class="bar-fill" style="width: 30%;"></div>
+    </div>
+    <div class="bar-percent">30%</div>
+  </div>
+
+  <div class="bar">
+    <div class="bar-title">Category B</div>
+    <div class="bar-fill-container">
+      <div class="bar-fill" style="width: 20%;"></div>
+    </div>
+    <div class="bar-percent">20%</div>
+  </div>
+
+  <div class="bar">
+    <div class="bar-title">Category C</div>
+    <div class="bar-fill-container">
+      <div class="bar-fill" style="width: 25%;"></div>
+    </div>
+    <div class="bar-percent">25%</div>
+  </div>
+</div>
+
+<!-- Script -->
+<script>
+  // JavaScript functionality can go here if necessary.
+</script>
+</body>
 </html>
