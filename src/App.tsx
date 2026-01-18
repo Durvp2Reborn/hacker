@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import "./App.css";
 import "./index.css";
 import { BarcodeScanner } from "react-barcode-scanner";
@@ -36,7 +35,6 @@ function App() {
 
     useEffect(() => {
         if (!productData || skipSurvey) return;
-        // eslint-disable-next-line react-hooks/set-state-in-effect
         if (productData.totalSurveys < 3) setRequireSurvey(true);
         else setSkipSurvey(true);
     }, [productData]);
@@ -44,8 +42,8 @@ function App() {
     if (!hideScanner) {
         return (
             <div className="page scan-page fade-in">
-                <h1 className="glow-title">Product Scanner</h1>
-                <div className="scanner-wrapper glass">
+                <h1 className="title">Product Scanner</h1>
+                <div className="scanner-wrapper">
                     <BarcodeScanner
                         id="#scanner"
                         options={{ formats: ["upc_a", "upc_e", "ean_13", "ean_8"] }}
@@ -58,7 +56,7 @@ function App() {
                 <div id="containera">
                     <input id="barcodeType" placeholder="Enter barcode manually" />
                     <button
-                        className="button neon"
+                        className="button"
                         onClick={() => {
                             setBarcode(
                                 (document.getElementById("barcodeType") as HTMLInputElement)
@@ -106,7 +104,7 @@ function App() {
         if (currQuestion < quiz.length) {
             return (
                 <div className="page survey-page fade-slide">
-                    <h1 className="survey-title">Quick Eco Survey</h1>
+                    <h1 className="title">Quick Eco Survey</h1>
                     <h2 className="product-name">{productData.name}</h2>
                     <QuestionCard
                         index={currQuestion}
@@ -150,24 +148,20 @@ function App() {
         const percent = Math.min(100, Math.max(0, productData.overallScore));
         return (
             <div className="page results-page fade-up">
-                <h1 className="glow-title">{productData.name}</h1>
+                <h1 className="title">{productData.name}</h1>
                 <div
                     className="score-ring"
                     style={{
-                        background: `conic-gradient(var(--color) ${percent * 3.6}deg, #eee3 0deg)`,
+                        background: `conic-gradient(#4caf50 ${percent * 3.6}deg, #e0e0e0 0deg)`,
                     }}
                 >
-                    <div className="score-inner" onClick={() => {
-                        const inner = document.querySelector('.score-inner') as HTMLElement
-                        inner.classList.add('pulse')
-                        setTimeout(() => inner.classList.remove('pulse'), 600)
-                    }}>
+                    <div className="score-inner">
                         <div className="score-value">{percent.toFixed(0)}</div>
                         <div className="score-label">Eco Score</div>
                     </div>
                 </div>
 
-                <div className="results-grid glass">
+                <div className="results-grid">
                     <Result label="Packaging" value={productData.q1} max={30} />
                     <Result label="Efficiency" value={productData.q2} max={10} />
                     <Result label="Waste" value={productData.q3} max={15} />
@@ -201,13 +195,13 @@ function QuestionCard({
     updater: (e: number) => void;
 }) {
     return (
-        <div className="question-card glass">
+        <div className="question-card">
             <h2>{question.question}</h2>
             <div className="answer-grid">
                 {question.answers.map((a, i) => (
                     <button
                         key={i}
-                        className="button answer"
+                        className="button"
                         data-points={question.values[i]}
                         onClick={(e) => {
                             updater(parseInt(e.currentTarget.dataset.points as string));
